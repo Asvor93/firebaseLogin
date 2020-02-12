@@ -1,0 +1,21 @@
+<br>
+<header style="margin-left: 40%;">You Profile</header>
+<br>
+<br>
+<div *ngIf="auth.user$ | async as user">
+  <div style="margin-left: 20%">
+  <mat-card>
+    <div style="position: fixed">
+      <img mat-card-lg-image src="assets/imgAmadeus1.jpeg">
+    </div>
+    <mat-card-content>
+    <mat-list>
+      <mat-list-item>Name: {{user.displayName}}</mat-list-item>
+      <mat-list-item>Email: {{user.email}}</mat-list-item>
+      <mat-list-item>ID: {{user.uid}}</mat-list-item>
+      <mat-list-item>Age: {{user.age}}</mat-list-item>
+  </mat-list>
+    </mat-card-content>
+  </mat-card>
+  </div>
+</div>

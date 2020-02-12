@@ -1,0 +1,15 @@
+html{
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  background-color: #7d8085;
+  margin-top: auto;
+  height: 35px;
+}
