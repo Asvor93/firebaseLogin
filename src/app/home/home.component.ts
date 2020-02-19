@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {of} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +6,10 @@ import {of} from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
 }
