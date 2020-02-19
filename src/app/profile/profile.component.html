@@ -3,6 +3,7 @@
 <br>
 <br>
 <div *ngIf="auth.user$ | async as user">
+  {{ user | json}}
   <div class="mat-card-center" style="margin-left: 25%">
   <mat-card>
     <div style="position: fixed">
