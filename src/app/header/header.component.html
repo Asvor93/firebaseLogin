@@ -3,16 +3,15 @@
     <ul>
       <li><a routerLink="/">HOME</a></li>
       <ul *ngIf="auth.user$ | async as user">
-        <li><a routerLink="/profile">PROFILE</a></li>
+        <li><a routerLink="users/profile">PROFILE</a></li>
       </ul>
-      <li>
-        <button style="position: absolute; right: 10px;top: 10px" mat-icon-button [matMenuTriggerFor]="appMenu">
-          <mat-icon>menu</mat-icon>
-        </button>
-      </li>
+      <ul *ngIf="auth.user$ | async as user; else signOut">
+        <button class="mat-button" mat-flat-button (click)="auth.signOut()">Sign out </button>
+      </ul>
     </ul>
-    <mat-menu #appMenu="matMenu">
-      <button mat-menu-item routerLink="/login">Sign in</button>
-    </mat-menu>
   </div>
 </mat-toolbar>
+
+<ng-template #signOut>
+  <button class="mat-button" mat-flat-button (click)="auth.googleSignin()">Sign In</button>
+</ng-template>
