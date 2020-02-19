@@ -9,7 +9,6 @@ import { AngularFireModule} from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule} from '@angular/fire/auth';
 import {environment} from '../environments/environment';
-import { FlexLayoutModule} from '@angular/flex-layout';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -49,7 +48,6 @@ import { FooterComponent } from './footer/footer.component';
     MatListModule,
     MatSidenavModule,
     MatTableModule,
-    FlexLayoutModule,
   ],
   providers: [AngularFirestoreModule],
   bootstrap: [AppComponent]
