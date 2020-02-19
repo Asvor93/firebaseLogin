@@ -26,3 +26,13 @@ li a:hover {
 .header {
   text-align: center;
 }
+
+.mat-button {
+  background-color: #7d8085;
+  color: black;
+  position: absolute; right: 10px; top: 10px;
+
+}
+.mat-button:hover {
+  background-color: whitesmoke;
+}
