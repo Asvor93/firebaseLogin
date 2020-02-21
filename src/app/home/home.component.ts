@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {of} from 'rxjs';
+import {AuthService} from '../service/auth.service';
 
 
 @Component({
@@ -8,7 +9,7 @@ import {of} from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor() { }
+  constructor(public auth: AuthService) { }
 
   ngOnInit() { }
 
