@@ -29,7 +29,7 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     HomeComponent,
     LoginComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
