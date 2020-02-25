@@ -49,4 +49,8 @@ export class AuthService {
     };
     return userRef.set(data, { merge: true });
   }
+  public deleteUser(user) {
+      const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+      return userRef.delete();
+  }
 }

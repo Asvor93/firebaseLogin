@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../service/auth.service';
 import {User} from '../../service/user';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 
 @Component({
@@ -10,7 +10,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit {
+user: User;
   editForm: FormGroup;
+
 
   constructor(private auth: AuthService, private fb: FormBuilder, private router: Router) { }
 
@@ -29,10 +31,7 @@ export class EditUserComponent implements OnInit {
     editUser.age = this.editForm.get('age').value;
     editUser.email = this.editForm.get('email').value;
 
-    this.auth.updateUserData(editUser);
-
-    this.router.navigateByUrl('users/profile');
-
+    this.auth.updateUserData(editUser).then(() => this.router.navigateByUrl('users/profile'));
   }
 
 }
