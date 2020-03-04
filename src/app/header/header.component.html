@@ -2,6 +2,7 @@
   <div>
     <ul>
       <li><a routerLink="/">HOME</a></li>
+      <li><a routerLink="/products">PRODUCTS</a> </li>
       <ul *ngIf="auth.user$ | async as user">
         <li><a routerLink="users/profile">PROFILE</a></li>
       </ul>

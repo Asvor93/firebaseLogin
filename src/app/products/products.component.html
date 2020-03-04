@@ -1,0 +1,26 @@
+<br>
+<header style="text-align: center">Products</header>
+<br>
+<br>
+<div>
+<div style="width: 80%; margin-left: 10%">
+<mat-grid-list cols="3" >
+  <mat-grid-tile *ngFor="let product of products">
+    <mat-card class="card-deck-container">
+      <mat-card-header>
+        <img src="assets/imgAmadeus1.jpeg">
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>Name: {{product.name}}</mat-list-item>
+          <mat-list-item>Price: {{product.price}}</mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-raised-button (click)="editProduct()">Edit</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+  </div>
+</div>
