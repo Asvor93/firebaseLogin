@@ -1,5 +1,5 @@
 
-<div *ngIf="auth.user$ | async as user; else login">
+<div *ngIf="auth.user$ | async; else login">
   <h4>You are now signed in!</h4>
   <button (click)="auth.signOut()">Sign Out</button>
 </div>

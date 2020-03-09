@@ -12,10 +12,12 @@
     <mat-list>
       <mat-list-item>Name: {{user.displayName}}</mat-list-item>
       <mat-list-item>Email: {{user.email}}</mat-list-item>
-      <mat-list-item>ID: {{user.uid}}</mat-list-item>
       <mat-list-item>Age: {{user.age}}</mat-list-item>
   </mat-list>
     </mat-card-content>
+    <mat-card-actions align="end">
+      <button mat-raised-button (click)="editUser()">Edit</button>
+    </mat-card-actions>
   </mat-card>
   </div>
 </div>

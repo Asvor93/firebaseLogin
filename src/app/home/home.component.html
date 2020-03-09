@@ -1,4 +1,12 @@
 <div style="text-align: center">
-<h1>Welcome to this homepage</h1>
-<p>please sign in to view you profile</p>
+
+  <div *ngIf="auth.user$ | async; else thisMessage">
+    <h1>Welcome to this homepage</h1>
+  </div>
 </div>
+
+<ng-template #thisMessage>
+  <h1>Welcome to this homepage</h1>
+  <p>please sign in to view you profile</p>
+</ng-template>
+

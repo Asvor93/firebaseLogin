@@ -21,7 +21,7 @@ export class AuthService {
   constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore, private router: Router) {
     this.user$ = this.afAuth.authState.pipe(switchMap(user => {
       if (user) {
-        return this.afs.doc<User>('users/${user.uid}').valueChanges();
+        return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
       } else {
         return of(null);
       }
@@ -41,8 +41,8 @@ export class AuthService {
     return this.router.navigate(['/']);
   }
 
-  private updateUserData(user) {
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc('users/${user.uid}');
+  public updateUserData(user) {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
     const data = {
       uid: user.uid,
       email: user.email,
@@ -51,5 +51,9 @@ export class AuthService {
       isAdmin: user.isAdmin
     };
     return userRef.set(data, { merge: true });
+  }
+  public deleteUser(user) {
+      const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+      return userRef.delete();
   }
 }

@@ -19,3 +19,7 @@ mat-list{
   width: 75%;
   text-align: center;
 }
+
+button {
+  background-color: #7d8085;
+}
