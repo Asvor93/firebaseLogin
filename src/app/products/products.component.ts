@@ -24,7 +24,7 @@ products: Product[];
     );
   }
 
-  editProduct() {
-    this.router.navigateByUrl('products/edit-product').catch(err => console.log(err));
+  editProduct(id: string) {
+    this.router.navigateByUrl('products/edit-product/' + id).catch(err => console.log(err));
   }
 }
