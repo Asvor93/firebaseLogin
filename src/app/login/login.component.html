@@ -1,10 +1,10 @@
 
 <div *ngIf="auth.user$ | async; else login">
   <h4>You are now signed in!</h4>
-  <button (click)="auth.signOut()">Sign out</button>
+  <button (click)="auth.signOut()">Sign Out</button>
 </div>
 
 <ng-template #login>
   <h4>You are not signed in!</h4>
-  <button (click)="auth.googleSignin()">Login</button>
+  <button (click)="signIn()">Sign In</button>
 </ng-template>

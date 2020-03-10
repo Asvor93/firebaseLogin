@@ -1,8 +1,11 @@
-<<<<<<< Updated upstream
-=======
+
 mat-card{
   max-width: 60%;
   margin-top: 2%;
+
+mat-card{
+  max-width: 60%;
+
 }
 header {
   font-size: 40px;
@@ -26,4 +29,3 @@ mat-list{
 button {
   background-color: #7d8085;
 }
->>>>>>> Stashed changes

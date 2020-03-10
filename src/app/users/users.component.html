@@ -1,6 +1,4 @@
-<<<<<<< Updated upstream
-<p>users works!</p>
-=======
+
 <br>
 <header style="text-align: center">Users</header>
 <br>
@@ -25,6 +23,11 @@
         <div *ngIf="user.isAdmin === false">
         <mat-button-toggle (change)="setAsAdmin(user)">is not admin</mat-button-toggle>
         </div>
+          <mat-list-item>Age: {{user.age}}</mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <mat-button-toggle>set as admin</mat-button-toggle>
         <button mat-raised-button (click)="deleteUser(user.uid)">Delete</button>
       </mat-card-actions>
     </mat-card>
@@ -33,4 +36,4 @@
 </div>
 
 
->>>>>>> Stashed changes
+

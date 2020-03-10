@@ -12,11 +12,21 @@ import {map} from 'rxjs/operators';
 })
 export class UsersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService, private afs: AngularFirestore) { }
 
   users: User[];
   user: Observable<User>;
+
   ngOnInit() {
+    this.getUsers();
+  }
+  getUsers() {
+    this.auth.getAllUsers().subscribe(listOfUsers => {
+      this.users = listOfUsers;
+    });
+  }
+  deleteUser(uid: string) {
+    return this.afs.collection('users').doc(uid).delete();
   }
 
   setAsAdmin(user: User) {

@@ -1,5 +1,5 @@
 <br>
-<header style="text-align: center">You Profile</header>
+<header style="text-align: center">Your Profile</header>
 <br>
 <br>
 <div *ngIf="auth.user$ | async as user">
@@ -12,7 +12,6 @@
     <mat-list>
       <mat-list-item>Name: {{user.displayName}}</mat-list-item>
       <mat-list-item>Email: {{user.email}}</mat-list-item>
-      <mat-list-item>Age: {{user.age}}</mat-list-item>
   </mat-list>
     </mat-card-content>
     <mat-card-actions align="end">
