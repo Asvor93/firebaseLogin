@@ -1,1 +1,36 @@
+<<<<<<< Updated upstream
 <p>users works!</p>
+=======
+<br>
+<header style="text-align: center">Users</header>
+<br>
+<br>
+<div *ngIf="auth.user$ | async as user">
+<div *ngFor="let user of users">
+  <div class="mat-card-center" style="margin-left: 25%">
+    <mat-card>
+      <div style="position: absolute">
+        <img mat-card-lg-image src="assets/imgAmadeus1.jpeg">
+      </div>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>Name: {{user.displayName}}</mat-list-item>
+          <mat-list-item>Email: {{user.email}}</mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <div *ngIf="user.isAdmin">
+        <mat-button-toggle checked (change)="setAsNotAdmin(user)">is admin</mat-button-toggle>
+        </div>
+        <div *ngIf="user.isAdmin === false">
+        <mat-button-toggle (change)="setAsAdmin(user)">is not admin</mat-button-toggle>
+        </div>
+        <button mat-raised-button (click)="deleteUser(user.uid)">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+</div>
+
+
+>>>>>>> Stashed changes

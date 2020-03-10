@@ -46,11 +46,34 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       age: user.age
+      isAdmin: user.isAdmin
     };
     return userRef.set(data, { merge: true });
   }
   public deleteUser(user) {
       const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
       return userRef.delete();
+  }
+
+  public setIsAdmin(user) {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+    const data = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      isAdmin: true
+    };
+    return userRef.set(data, { merge: true });
+  }
+
+  setAsNotAdmin(user: User) {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+    const data = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      isAdmin: false
+    };
+    return userRef.set(data, { merge: true });
   }
 }
