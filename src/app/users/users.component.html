@@ -1,1 +1,24 @@
-<p>users works!</p>
+<br>
+<header style="text-align: center">Users</header>
+<br>
+<br>
+<div *ngFor="let user of users">
+  <div class="mat-card-center" style="margin-left: 25%">
+    <mat-card>
+      <div style="position: absolute">
+        <img mat-card-lg-image src="assets/imgAmadeus1.jpeg">
+      </div>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>Name: {{user.displayName}}</mat-list-item>
+          <mat-list-item>Email: {{user.email}}</mat-list-item>
+          <mat-list-item>Age: {{user.age}}</mat-list-item>
+        </mat-list>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <mat-button-toggle>set as admin</mat-button-toggle>
+        <button mat-raised-button (click)="deleteUser(user.uid)">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

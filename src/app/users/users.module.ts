@@ -6,13 +6,13 @@ import { UsersComponent } from './users.component';
 import {ProfileComponent} from '../profile/profile.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import {
-  _MatMenuDirectivesModule,
-  MatButtonModule,
-  MatCardModule, MatFormFieldModule,
-  MatIconModule, MatInputModule,
-  MatListModule,
-  MatMenuModule, MatSidenavModule, MatTableModule,
-  MatToolbarModule
+    _MatMenuDirectivesModule,
+    MatButtonModule, MatButtonToggleModule,
+    MatCardModule, MatFormFieldModule,
+    MatIconModule, MatInputModule,
+    MatListModule,
+    MatMenuModule, MatSidenavModule, MatTableModule,
+    MatToolbarModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -24,22 +24,23 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     ProfileComponent,
     EditUserComponent
   ],
-  imports: [
-    CommonModule,
-    UsersRoutingModule,
-    _MatMenuDirectivesModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatCardModule,
-    MatListModule,
-    MatSidenavModule,
-    MatTableModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatInputModule,
-    ReactiveFormsModule,
-  ]
+    imports: [
+        CommonModule,
+        UsersRoutingModule,
+        _MatMenuDirectivesModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+        MatCardModule,
+        MatListModule,
+        MatSidenavModule,
+        MatTableModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatButtonToggleModule,
+    ]
 })
 export class UsersModule { }

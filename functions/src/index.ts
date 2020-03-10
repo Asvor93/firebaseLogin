@@ -3,9 +3,13 @@ import * as admin from 'firebase-admin';
 
 admin.initializeApp();
 
-exports.userDeleted = functions.firestore.document('users/{uid}').onDelete((snapshot, context) => {
-  const db = admin.firestore();
-  return db.doc('users/' + context.params.uid).delete()
+exports.userDeleted = functions.firestore.document('users/{uid}')
+  .onDelete((snapshot, context) => {
+  return admin.auth().deleteUser(context.params.uid).then(() => {
+    console.log("Deleted user")
+  }).catch(e => {
+    console.log("Error: ", e);
+  })
 });
 
 // // Start writing Firebase Functions

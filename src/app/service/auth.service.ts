@@ -9,7 +9,7 @@ import {
 } from '@angular/fire/firestore';
 
 import { Observable, of } from 'rxjs';
-import {switchMap} from 'rxjs/operators';
+import {map, switchMap} from 'rxjs/operators';
 import { User} from './user';
 
 @Injectable({
@@ -33,7 +33,6 @@ export class AuthService {
     const credential = await this.afAuth.auth.signInWithPopup(provider);
     return this.updateUserData(credential.user),  await this.router.navigate(['/profile']);
     await this.router.navigateByUrl('users/profile');
-    return this.updateUserData(credential.user);
   }
 
   async signOut() {
@@ -47,13 +46,26 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      age: user.age,
       isAdmin: user.isAdmin
     };
     return userRef.set(data, { merge: true });
   }
-  public deleteUser(user) {
-      const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
-      return userRef.delete();
+
+  public getAllUsers(): Observable<User[]> {
+    return this.afs.collection<User>('users').snapshotChanges()
+      .pipe(map(docStuff => {
+        const newArray: User[] = [];
+        docStuff.forEach(doc => {
+          const user = doc.payload.doc.data();
+          newArray.push({
+            uid: user.uid,
+            displayName: user.displayName,
+            email: user.email,
+            isAdmin: user.isAdmin
+          });
+        });
+        return newArray;
+      })
+  );
   }
 }

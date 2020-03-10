@@ -18,9 +18,4 @@ export class ProfileComponent implements OnInit {
   editUser() {
     this.router.navigateByUrl('users/edit-user');
   }
-  deleteUser(uid: string) {
-    this.afs.collection('users').doc(uid).delete().then(() => {
-      console.log('it works');
-    });
-  }
 }
