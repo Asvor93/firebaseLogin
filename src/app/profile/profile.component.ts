@@ -16,6 +16,6 @@ export class ProfileComponent implements OnInit {
   }
 
   editUser() {
-    this.router.navigateByUrl('users/edit-user');
+   return this.router.navigateByUrl('users/edit-user');
   }
 }

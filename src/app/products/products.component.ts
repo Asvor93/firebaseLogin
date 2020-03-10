@@ -3,8 +3,6 @@ import {ProductsService} from './shared/products.service';
 import {Product} from './shared/product';
 import {Router} from '@angular/router';
 import {AuthService} from '../service/auth.service';
-import {Observable} from 'rxjs';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-products',
