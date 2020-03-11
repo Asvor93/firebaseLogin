@@ -8,7 +8,7 @@ import {
   AngularFirestoreDocument
 } from '@angular/fire/firestore';
 
-import { Observable, of } from 'rxjs';
+import {Observable, of, pipe} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
 import { User} from './user';
 
@@ -46,7 +46,9 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      isAdmin: user.isAdmin
+      isAdmin: user.isAdmin,
+      photoURL: user.photoURL,
+      isBlocked: user.isBlocked
     };
     return userRef.set(data, { merge: true });
   }
@@ -61,7 +63,9 @@ export class AuthService {
             uid: user.uid,
             displayName: user.displayName,
             email: user.email,
-            isAdmin: user.isAdmin
+            isAdmin: user.isAdmin,
+            photoURL: user.photoURL,
+            isBlocked: user.isBlocked
           });
         });
         return newArray;
@@ -75,7 +79,9 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      isAdmin: true
+      isAdmin: true,
+      photoURL: user.photoURL,
+      isBlocked: user.isBlocked
     };
     return userRef.set(data, { merge: true });
   }
@@ -86,7 +92,33 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      isAdmin: false
+      isAdmin: false,
+      photoURL: user.photoURL,
+      isBlocked: user.isBlocked
+    };
+    return userRef.set(data, { merge: true });
+  }
+  setBlock(user: User) {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+    const data = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      isAdmin: false,
+      photoURL: user.photoURL,
+      isBlocked: true
+    };
+    return userRef.set(data, { merge: true });
+  }
+  unBlock(user: User) {
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
+    const data = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      isAdmin: false,
+      photoURL: user.photoURL,
+      isBlocked: false
     };
     return userRef.set(data, { merge: true });
   }

@@ -12,6 +12,11 @@ exports.userDeleted = functions.firestore.document('users/{uid}')
   })
 });
 
+exports.deleteProduct = functions.firestore.document('products/{id}').onDelete((snapshot) => {
+  const deletedProduct = snapshot.data();
+  return deletedProduct;
+});
+
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 //

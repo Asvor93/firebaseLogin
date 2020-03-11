@@ -3,4 +3,6 @@ export class User {
   email: string;
   displayName: string;
   isAdmin: boolean;
+  photoURL: string;
+  isBlocked: boolean;
 }

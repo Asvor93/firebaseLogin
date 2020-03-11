@@ -35,4 +35,10 @@ export class UsersComponent implements OnInit {
   setAsNotAdmin(user: User) {
     return this.auth.setAsNotAdmin(user);
   }
+  setBlock(user: User) {
+    return this.auth.setBlock(user);
+  }
+  setUnBlock(user: User) {
+    return this.auth.unBlock(user);
+  }
 }
