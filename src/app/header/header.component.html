@@ -7,6 +7,7 @@
         <li><a routerLink="users/profile">PROFILE</a></li>
         <ul *ngIf="user.isAdmin">
         <li><a routerLink="users">USERS</a></li>
+          <li><a routerLink="products/add-product">ADD PRODUCT</a></li>
         </ul>
       </ul>
       <ul *ngIf="auth.user$ | async as user; else signOut">

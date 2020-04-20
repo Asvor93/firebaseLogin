@@ -10,6 +10,10 @@ import { AngularFireAuthModule} from '@angular/fire/auth';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FooterComponent } from './footer/footer.component';
+import {NgxsModule} from '@ngxs/store';
+import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
+import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 import {
   _MatMenuDirectivesModule,
   MatButtonModule,
@@ -19,7 +23,8 @@ import {
   MatMenuModule, MatSidenavModule, MatTableModule,
   MatToolbarModule
 } from '@angular/material';
-import { FooterComponent } from './footer/footer.component';
+import {ProductsState} from './products/shared/products.state';
+
 
 
 @NgModule({
@@ -46,8 +51,13 @@ import { FooterComponent } from './footer/footer.component';
     MatListModule,
     MatSidenavModule,
     MatTableModule,
+    NgxsModule.forRoot(
+      [ProductsState],
+      { developmentMode: !environment.production }),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot()
   ],
-  providers: [AngularFirestoreModule],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

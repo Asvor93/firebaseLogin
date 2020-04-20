@@ -31,8 +31,7 @@ export class AuthService {
   async googleSignin() {
     const provider = new auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
-    return this.updateUserData(credential.user),  await this.router.navigate(['/profile']);
-    await this.router.navigateByUrl('users/profile');
+    return this.updateUserData(credential.user),  await this.router.navigate(['users/profile']);
   }
 
   async signOut() {
@@ -46,9 +45,10 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      isAdmin: user.isAdmin,
-      photoURL: user.photoURL,
-      isBlocked: user.isBlocked
+      isAdmin: null,
+      photoURL: null,
+      isBlocked: null,
+      isSuper: null
     };
     return userRef.set(data, { merge: true });
   }
@@ -65,7 +65,8 @@ export class AuthService {
             email: user.email,
             isAdmin: user.isAdmin,
             photoURL: user.photoURL,
-            isBlocked: user.isBlocked
+            isBlocked: user.isBlocked,
+            isSuper: user.isSuper
           });
         });
         return newArray;
@@ -81,7 +82,8 @@ export class AuthService {
       displayName: user.displayName,
       isAdmin: true,
       photoURL: user.photoURL,
-      isBlocked: user.isBlocked
+      isBlocked: user.isBlocked,
+      isSuper: user.isSuper
     };
     return userRef.set(data, { merge: true });
   }
@@ -94,7 +96,8 @@ export class AuthService {
       displayName: user.displayName,
       isAdmin: false,
       photoURL: user.photoURL,
-      isBlocked: user.isBlocked
+      isBlocked: user.isBlocked,
+      isSuper: user.isSuper
     };
     return userRef.set(data, { merge: true });
   }
@@ -106,7 +109,8 @@ export class AuthService {
       displayName: user.displayName,
       isAdmin: false,
       photoURL: user.photoURL,
-      isBlocked: true
+      isBlocked: true,
+      isSuper: user.isSuper
     };
     return userRef.set(data, { merge: true });
   }
@@ -118,7 +122,8 @@ export class AuthService {
       displayName: user.displayName,
       isAdmin: false,
       photoURL: user.photoURL,
-      isBlocked: false
+      isBlocked: false,
+      isSuper: user.isSuper
     };
     return userRef.set(data, { merge: true });
   }

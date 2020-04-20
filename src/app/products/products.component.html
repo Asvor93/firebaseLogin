@@ -5,7 +5,7 @@
 <div *ngIf="auth.user$ | async as user">
 <div style="width: 80%; margin-left: 10%">
 <mat-grid-list cols="3">
-  <mat-grid-tile *ngFor="let product of products">
+  <mat-grid-tile *ngFor="let product of products$ | async">
     <mat-card class="card-deck-container">
       <mat-card-header>
         <img src="assets/imgAmadeus1.jpeg">

@@ -5,4 +5,5 @@ export class User {
   isAdmin: boolean;
   photoURL: string;
   isBlocked: boolean;
+  isSuper: boolean;
 }

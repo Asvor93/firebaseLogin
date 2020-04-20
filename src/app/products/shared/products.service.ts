@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {Observable, of} from 'rxjs';
 import {Product} from './product';
 import {map} from 'rxjs/operators';
-import {User} from '../../service/user';
+import { Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore, private router: Router) { }
 
   public getProducts(): Observable<Product[]> {
     return this.afs
@@ -42,5 +42,15 @@ export class ProductsService {
       inStock: product.inStock,
     };
     return userRef.set(data, { merge: true });
+  }
+  public addProduct(product) {
+    const userRef: AngularFirestoreCollection<Product> = this.afs.collection<Product>(`products`);
+    const data = {
+      id: this.afs.createId(),
+      price: product.price,
+      name: product.name,
+      inStock: product.inStock,
+    };
+    return userRef.add(data);
   }
 }
