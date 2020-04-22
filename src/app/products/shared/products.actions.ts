@@ -1,19 +1,26 @@
 import {Product} from './product';
 
-export class GetAllProductsAction {
+export class GetAllProducts {
   static readonly type = '[Product] GetAllProductsAction';
 }
 
-export class UpdateProductAction {
+export class UpdateProduct {
   static readonly type = '[Product] UpdateProductAction';
 
-  constructor(public payload: Product) {
+  constructor(public product: Product) {
   }
 }
 
-export class AddProductAction {
+export class AddProduct {
   static readonly type = '[Product] AddProductAction';
 
-  constructor(public payload: Product) {
+  constructor(public product: Product) {
+  }
+}
+
+export class DeleteProduct {
+  static readonly type = '[Product] DeleteProduct';
+
+  constructor(public product: Product) {
   }
 }

@@ -2,7 +2,7 @@ import {Product} from './product';
 import {Injectable} from '@angular/core';
 import {ProductsService} from './products.service';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {AddProductAction, GetAllProductsAction} from './products.actions';
+import {AddProduct, DeleteProduct, GetAllProducts, UpdateProduct} from './products.actions';
 import {tap} from 'rxjs/operators';
 
 export class ProductStateModel {
@@ -25,7 +25,7 @@ export class ProductsState {
     return state.products;
   }
 
-  @Action(GetAllProductsAction)
+  @Action(GetAllProducts)
   getAllProducts({getState, setState}: StateContext<ProductStateModel>) {
     return this.productService.getProducts().pipe(
       tap((result) => {
@@ -38,11 +38,37 @@ export class ProductsState {
     );
   }
 
-  @Action(AddProductAction)
-  addProduct({getState, patchState}: StateContext<ProductStateModel>, { payload }: AddProductAction) {
-        const state = getState();
-        patchState({
-          products: [...state.products, payload],
+  @Action(AddProduct)
+  addProduct({getState, setState}: StateContext<ProductStateModel>, action: AddProduct) {
+    return this.productService.addProduct(action.product);
+    const state = getState();
+    setState({
+          ...state
         });
-      }
+  }
+
+  @Action(DeleteProduct)
+  deleteProduct({getState, setState, dispatch}: StateContext<ProductStateModel>, action: DeleteProduct) {
+    const state = getState();
+    return this.productService
+      .deleteProduct(action.product)
+      .pipe(
+        tap(product => {
+          setState({
+            ...state,
+          });
+          dispatch(new GetAllProducts());
+        })
+      );
+  }
+
+  @Action(UpdateProduct)
+  updateProduct({getState, setState}: StateContext<ProductStateModel>, action: UpdateProduct) {
+    return this.productService.updateProduct(action.product);
+    const state = getState();
+    setState({
+      ...state
+    });
+  }
 }
+

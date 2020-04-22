@@ -3,6 +3,8 @@ import {Product} from '../shared/product';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductsService} from '../shared/products.service';
+import {Store} from '@ngxs/store';
+import {GetAllProducts, UpdateProduct} from '../shared/products.actions';
 
 @Component({
   selector: 'app-edit-products',
@@ -13,7 +15,7 @@ export class EditProductsComponent implements OnInit {
   product: Product;
   editForm: FormGroup;
   id: string;
-  constructor(private pService: ProductsService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) { }
+  constructor(private pService: ProductsService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private  store: Store) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -29,7 +31,10 @@ export class EditProductsComponent implements OnInit {
     editProduct.name = this.editForm.get('name').value;
     editProduct.price = this.editForm.get('price').value;
     editProduct.inStock = this.editForm.get('inStock').value;
-
-    this.pService.updateProduct(editProduct).then(() => this.router.navigateByUrl('products'));
+    this.store.dispatch([
+      new UpdateProduct(editProduct),
+      new GetAllProducts()
+    ]);
+    this.router.navigateByUrl('products');
   }
 }

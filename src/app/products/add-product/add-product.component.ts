@@ -3,6 +3,8 @@ import {Product} from '../shared/product';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ProductsService} from '../shared/products.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Store} from '@ngxs/store';
+import {AddProduct, GetAllProducts} from '../shared/products.actions';
 
 @Component({
   selector: 'app-add-product',
@@ -13,7 +15,7 @@ export class AddProductComponent implements OnInit {
   product: Product;
   newPrForm: FormGroup;
   id: string;
-  constructor(private pService: ProductsService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) { }
+  constructor(private store: Store, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.newPrForm = this.fb.group({
@@ -30,7 +32,10 @@ export class AddProductComponent implements OnInit {
     addProduct.price = this.newPrForm.get('price').value;
     addProduct.inStock = this.newPrForm.get('inStock').value;
 
-    this.pService.addProduct(addProduct).then(() => this.router.navigateByUrl('products'));
+    this.store.dispatch([
+      new AddProduct(addProduct),
+      new GetAllProducts()]);
+    this.router.navigateByUrl('products');
   }
 
 }

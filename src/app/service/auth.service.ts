@@ -45,10 +45,10 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      isAdmin: null,
+      isAdmin: true,
       photoURL: null,
-      isBlocked: null,
-      isSuper: null
+      isBlocked: false,
+      isSuper: true
     };
     return userRef.set(data, { merge: true });
   }

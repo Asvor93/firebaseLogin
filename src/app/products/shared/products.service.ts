@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
-import {Observable, of} from 'rxjs';
+import {from, Observable, of} from 'rxjs';
 import {Product} from './product';
 import {map} from 'rxjs/operators';
 import { Router} from '@angular/router';
@@ -52,5 +52,17 @@ export class ProductsService {
       inStock: product.inStock,
     };
     return userRef.add(data);
+  }
+
+  deleteProduct(product: Product): Observable<Product> {
+    return from(
+      this.afs
+        .doc(`products` + '/' + product.id)
+        .delete()
+    ).pipe(
+      map(() => {
+        return product;
+      })
+    );
   }
 }
